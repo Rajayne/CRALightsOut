@@ -19,7 +19,7 @@ import "./Board.css";
  *  This should render an HTML table of individual <Cell /> components.
  *  This doesn't handle any clicks --- clicks are on individual cells **/
 
-function Board({ nrows, ncols, chanceLightStartsOn }) {
+function Board({ nrows = 5, ncols = 5, chanceLightStartsOn = 0.25 }) {
   const [board, setBoard] = useState(createBoard());
 
   /** create a board nrows high/ncols wide, each cell randomly lit or unlit */
@@ -64,7 +64,7 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
       };
 
       // TODO: Make a (deep) copy of the oldBoard
-      const boardCopy = [...oldBoard];
+      const boardCopy = oldBoard.map((row) => [...row]);
 
       // TODO: in the copy, flip this cell and the cells around it
       flipCell(y, x, boardCopy);
@@ -82,7 +82,6 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
   if (hasWon()) {
     return <div>You Win!</div>;
   }
-  // TODO
 
   // make table board
   let tblBoard = [];
